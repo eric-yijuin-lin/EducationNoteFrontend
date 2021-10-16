@@ -1,0 +1,9 @@
+.p-content {
+  font-size: larger;
+  padding: 5px;
+}
+
+.font-large-bold {
+  font-size: larger;
+  font-weight: bold;
+}

@@ -1,0 +1,38 @@
+<!-- <select [ngModel]="selectedMonth" (ngModelChange)="onMonthChange()">
+  <ng-container *ngFor=" let date of distinctMonths">
+    <option value={{date}}>
+      {{selectedMonthCht}}
+    </option>
+  </ng-container>
+</select> -->
+<mat-form-field appearance="fill">
+  <mat-select (valueChange)="onMonthChange()" [(value)]="selectedMonth">
+    <mat-option *ngFor="let opt of monthSelectOptions" [value]="opt">
+      {{opt.text}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div class="radar-chart-container">
+  <canvas baseChart [options]="radarChartOption" [datasets]="radarChartData" [labels]="radarChartLabels"
+    [chartType]="'radar'">
+  </canvas>
+</div>
+
+<div>
+  <mat-list class="mission-record-container">
+    <div mat-subheader>Folders</div>
+    <mat-list-item *ngFor="let record of missionRecords">
+      <mat-icon class="mission-record-icon" mat-list-icon>{{record.iconCode}}</mat-icon>
+      <div mat-line>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <div>【{{record.missionTypeCht}}】</div>
+          <div>點數: {{record.point}}</div>
+          <div></div>
+          <div>{{record.finishedDate | date}}</div>
+        </div>
+      </div>
+      <div mat-line> {{record.subject}} </div>
+    </mat-list-item>
+  </mat-list>
+</div>

@@ -1,0 +1,24 @@
+<div></div>
+<!-- <span class="font-large-bold">
+  {{displayingNote.dateTime | date: 'yyyy-MM-dd'}}
+</span> -->
+<select [(ngModel)]="selectedDate" (ngModelChange)="onSelectedDateChanged($event)">
+  <ng-container *ngFor="let date of distinctNoteDateList">
+    <option value={{date}}>
+      {{date}}
+    </option>
+  </ng-container>
+
+</select>
+
+<h2>本週摘要</h2>
+<ul>
+  <li class="font-large-bold" *ngFor="let sumItem of displayingNote.summary">
+    {{sumItem}}
+  </li>
+</ul>
+
+<p class="p-content" *ngFor="let phares of displayingNote.content">
+  {{phares}}
+  <br>
+</p>

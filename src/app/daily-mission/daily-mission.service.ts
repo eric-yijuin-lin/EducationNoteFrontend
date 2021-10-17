@@ -3,12 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DailyMissionRecord } from './daily-mission.interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DailyMissionService {
 
+  apiUrl = environment.apiUrl;
   missionTypeMap = new Map([
     ['required', {zhTw: '必要', iconCode: 'grade'}],
     ['mental', {zhTw: '心靈', iconCode: 'self_improvement'}],
@@ -63,7 +65,7 @@ export class DailyMissionService {
     }
 
     return this.http
-      .get<DailyMissionRecord[]>('http://localhost:5000/api/DailyMission')
+      .get<DailyMissionRecord[]>(`${this.apiUrl}/api/DailyMission`)
       .pipe(
         map(resp => resp.map(dto => {
           dto.finishedDate = new Date(dto.finishedDate);
